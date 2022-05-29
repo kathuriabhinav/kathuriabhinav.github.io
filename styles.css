@@ -1,0 +1,192 @@
+/*General*/
+body * {
+    font-family: "Montserrat", sans-serif;
+  }
+  
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: bold;
+  }
+  
+  ul li {
+    border: none !important;
+  }
+  
+  /*Containers*/
+  
+  .image-section {
+    height: 100vh;
+    -moz-text-align: center; /*works on Firefox */
+    -webkit-text-align: center; /*works on Safari and Google Chrome*/
+    text-align: center;
+    background-color: #262626;
+    -moz-padding: 20px; /*works on Firefox */
+    -webkit-padding: 20px; /*works on Safari and Google Chrome*/
+    padding: 20px;
+  }
+  
+  .image-section img {
+    max-width: 60%;
+    max-height: 60%;
+    margin-top: 50px !important;
+    object-fit: cover;
+  }
+  
+  .links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .links a {
+    flex: 0 0 10%;
+  }
+  
+  .icon-link {
+    text-decoration: none;
+    font-size: 48px auto;
+    padding: 26px;
+  }
+  
+  .content-container {
+    width: 70%;
+    margin: 0 auto;
+  }
+  
+  .home {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .home p {
+    font-weight: bold;
+  }
+  
+  .home h1 {
+    font-size: 64px;
+  }
+  
+  .html {
+    width: 90%;
+    background-color: #04aa6d;
+  }
+  
+  .w3-ul li {
+    padding: 8px 0px;
+  }
+  
+  /*Utilities*/
+  
+  .w3-margin-top-2 {
+    margin-top: 32px;
+  }
+  
+  .w3-margin-top-4 {
+    margin-top: 64px;
+  }
+  
+  .w3-margin-top-20-percent {
+    margin-top: 20%;
+  }
+  
+  .w3-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+  }
+  
+  .w3-fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+  
+  /*Media queries*/
+  @media screen and (max-width: 1200px) {
+    .home {
+      width: 90%;
+    }
+    .content-container {
+      width: 80% !important;
+    }
+  
+    .download-text {
+      display: none;
+    }
+  }
+  
+  @media screen and (max-width: 992px) {
+    .home {
+      width: 100%;
+    }
+    .home h1 {
+      font-size: 48px;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .content-container {
+      width: 100% !important;
+    }
+  
+    .image-section {
+      -moz-padding: 10px; /*works on Firefox */
+      -webkit-padding: 10px; /*works on Safari and Google Chrome*/
+      padding: 10px;
+    }
+  
+    .links a {
+      flex: 0 0 5% !important;
+    }
+  
+    .home {
+      text-align: center;
+      width: 100%;
+    }
+  
+    .home p {
+      font-size: medium !important;
+    }
+  
+    .home h1 {
+      font-size: 32px;
+    }
+    .home h2 {
+      font-size: 24px;
+    }
+  
+    .w3-fixed {
+      position: inherit;
+    }
+  
+    .image-section {
+      height: auto;
+    }
+  
+    .image-section img {
+      max-width: 80%;
+      max-height: 80%;
+    }
+  
+    .icon-link {
+      font-size: 24px;
+    }
+  
+    .w3-container,
+    .w3-panel {
+      padding: 0.01em;
+    }
+  
+    .download-text {
+      display: inline-block;
+    }
+  }
