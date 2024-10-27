@@ -1,0 +1,687 @@
+<!-- kathuriabhinav -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Kathuri Abhinav</title>
+    <meta content="" name="description">
+
+    <meta content="" name="keywords">
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/img/favicon2.ico" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- My Main CSS -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <style>
+        .selector {
+            position: relative;
+            left: 50%;
+            top: 50%;
+            width: 140px;
+            height: 140px;
+            margin-top: -70px;
+            margin-left: -70px;
+        }
+
+        .selector,
+        .selector button {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 300;
+        }
+
+        .selector button {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            background: #428bca;
+            border-radius: 50%;
+            border: 0;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+            transition: all .1s;
+        }
+
+        .selector button:hover {
+            background: #3071a9;
+        }
+
+        .selector button:focus {
+            outline: none;
+        }
+
+        .selector ul {
+            position: absolute;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            top: -20px;
+            right: -20px;
+            bottom: -20px;
+            left: -20px;
+        }
+
+        .selector li {
+            position: absolute;
+            width: 0;
+            height: 100%;
+            margin: 0 50%;
+            transition: all 0.8s ease-in-out;
+        }
+
+        .selector li input {
+            display: none;
+        }
+
+        .selector li input+label {
+            position: absolute;
+            left: 50%;
+            bottom: 100%;
+            width: 0;
+            height: 0;
+            line-height: 1px;
+            margin-left: 0;
+            background: #fff;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 1px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: none;
+            transition: all 0.8s ease-in-out, color 0.1s, background 0.1s;
+        }
+
+        .selector li input:checked+label {
+            color: white;
+        }
+
+        .selector.open li input+label {
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            margin-left: -40px;
+            font-size: 14px;
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        var nbOptions = 8;
+        var angleStart = -360;
+
+        // jquery rotate animation
+        function rotate(li, d) {
+            $({
+                d: angleStart
+            }).animate({
+                d: d
+            }, {
+                step: function (now) {
+                    $(li)
+                        .css({
+                            transform: 'rotate(' + now + 'deg)'
+                        })
+                        .find('label')
+                        .css({
+                            transform: 'rotate(' + (-now) + 'deg)'
+                        });
+                },
+                duration: 0
+            });
+        }
+
+        function toggleOptions(s) {
+            $(s).toggleClass('open');
+            var li = $(s).find('li');
+            var deg = $(s).hasClass('half') ? 180 / (li.length - 1) : 360 / li.length;
+            for (var i = 0; i < li.length; i++) {
+                var d = $(s).hasClass('half') ? (i * deg) - 90 : i * deg;
+                $(s).hasClass('open') ? rotate(li[i], d) : rotate(li[i], angleStart);
+            }
+        }
+
+        $('.selector button').click(function (e) {
+            toggleOptions($(this).parent());
+        });
+
+        setTimeout(function () {
+            toggleOptions('.selector');
+        }, 100);
+    </script>
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-36251023-1']);
+        _gaq.push(['_setDomainName', 'jqueryscript.net']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+</head>
+
+<body>
+
+    <!-- Defining Menu and Intro Div -->
+
+    <header id="header" class="header fixed-top">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+            <a href="index.html" class="logo d-flex align-items-center"> </a>
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link" href="#home">Home</a></li>
+                    <li><a class="nav-link" href="#about">About</a></li>
+                    <li><a class="nav-link" href="#projects">Projects</a></li>
+                    <li><a class="nav-link" href="#achievements">Achievements</a></li>
+                    <li><a class="nav-link" href="#skills">Skills</a></li>
+                    <li><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="introduction d-flex align-items-center">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 d-flex flex-column justify-content-center">
+                    <h1 data-aos="fade-up">Hi There! I am
+                        <div style="color:#4154f1;">Kathuri Abhinav</div>
+                    </h1>
+                    <h2 data-aos="fade-down" data-aos-delay="400" class="font-weight:bold;"><span
+                            style="font-weight: bold;">Final Year Undergratuate at IIIT Allahabad</span></h2>
+
+                    <div data-aos="fade-up " data-aos-delay="600 ">
+                        <div class="text-center text-lg-start ">
+                            <a href=" "
+                                class="btn-get-started d-inline-flex align-items-center justify-content-center align-self-center "
+                                onclick="window.open( 'https://drive.google.com/file/d/1NWhGKjIDFWHr6jamXupGGBiWJXsNJlgU/view?usp=sharing') ">
+                                <span>Resume</span>
+                                <i class="bi bi-arrow-right "></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 ">
+                    <div class='selector'>
+                        <ul>
+                            <li>
+                                <input id='c1' type='checkbox'>
+                                <label for='c1'> <a href="https://www.facebook.com/kathuriabhinav" target="_blank"><i
+                                            class="bi bi-facebook "
+                                            style="font-size:50px; color: rgb(81, 159, 249) "></i></a></label>
+                            </li>
+                            <li>
+                                <input id='c2' type='checkbox'>
+                                <label for='c2'> <a href="https://www.linkedin.com/in/kathuriabhinav" target="_blank"><i
+                                            class="bi bi-linkedin "
+                                            style="font-size:50px; color: rgb(78, 78, 250) "></i></a></label>
+                            </li>
+                            <li>
+                                <input id='c3' type='checkbox'>
+                                <label for='c3'> <a href="https://twitter.com/kathuriabhinav" target="_blank"><i
+                                            class="bi bi-twitter "
+                                            style="font-size:50px; color: rgb(3, 180, 229) "></i></a></label>
+                            </li>
+                            <li>
+                                <input id='c4' type='checkbox'>
+                                <label for='c4'> <a href="https://github.com/kathuriabhinav" target="_blank"><i
+                                            class="bi bi-github " style="font-size:50px; color:black; "></i></a></label>
+                            </li>
+                            <li>
+                                <input id='c5' type='checkbox'>
+                                <label for='c5'> <a href="https://codeforces.com/profile/kathuriabhinav"
+                                        target="_blank"><img src="assets/img/coding-profiles/CODEFORCES.jpg "
+                                            alt=" " /></a></label>
+                            </li>
+                            <li>
+                                <input id='c6' type='checkbox'>
+                                <label for='c6'> <a href="https://www.codechef.com/users/kathuriabhinav"
+                                        target="_blank"><img src="assets/img/coding-profiles/CODECHEF.jpg "
+                                            alt=" " /></a></label>
+                            </li>
+                            <li>
+                                <input id='c7' type='checkbox'>
+                                <label for='c7'> <a href="https://leetcode.com/kathuriabhinav" target="_blank"><img
+                                            src="assets/img/coding-profiles/LEETCODE.png " alt=" " /></a></label>
+                            </li>
+                        </ul>
+                        <button style="font-weight:bold; "> PROFILES </button>
+                    </div>
+
+                    <div class="mySocials mt-5 ">
+
+                        <a href="https://leetcode.com/kathuriabhinav" target="_blank"><img
+                                src="assets/img/coding-profiles/LEETCODE.png " alt=" "
+                                style="border-radius:100%;" /></a>
+                        <a href="https://www.codechef.com/users/kathuriabhinav" target="_blank"><img
+                                src="assets/img/coding-profiles/CODECHEF.jpg " alt=" "
+                                style="border-radius:80%; " /></a>
+                        <a href="https://codeforces.com/profile/kathuriabhinav" target="_blank"><img
+                                src="assets/img/coding-profiles/CODEFORCES.jpg " alt=" "
+                                style="border-radius:40%; " /></a>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- About Section -->
+
+    <section id="about" class="features ">
+        <div class="container " data-aos="fade-up " data-aos-delay="200 ">
+            <header class="section-header ">
+                <img src="assets/img/empty.png " alt=" " />
+                <p><span style="font-family: Nunito, sans-serif; "> And Miles to Go Before I Sleep.....</span></p>
+            </header>
+
+            <div class="row ">
+
+                <div class="col-lg-6 ">
+                    <img src="assets/img/about.png " class="img-fluid " alt=" ">
+                </div>
+
+                <div class="col-lg-6 mt-5 mt-lg-0 d-flex ">
+                    <div class="row align-self-center gy-4 ">
+                        <div class="col-md-12 " data-aos="zoom-out ">
+                            <h3 style="line-height:1.6; text-align:justify; font-weight:bold;">I am currently pursuing
+                                Bachelors in
+                                <span style="color:#4154f1; ">Information Technology</span> from <span
+                                    style="color:#4154f1; ">IIIT Allahabad</span>. I have a keen interest in Full Stack
+                                <span style="color:#4154f1; ">Android App Development</span>.
+                                I love to solve <span style="color:#4154f1; ">Coding Challenges</span> and exploring new
+                                domains of Computer Science. I also do Theatre in College.
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <img src="assets/img/empty.png " alt=" " />
+    <!-- Projects Descriptions -->
+
+    <section id="projects" class="myProjects ">
+        <div class="container " data-aos="fade-up ">
+
+            <header class="section-header ">
+                <img src="assets/img/empty.png " alt=" " />
+                <p><span style="font-family: Nunito, sans-serif; "> MY PROJECTS </span></p>
+                <img src="assets/img/empty.png " alt=" " />
+            </header>
+
+            <div class="row gy-4 myProjects-container " data-aos="fade-up " data-aos-delay="200 ">
+                <div class="col-lg-4 col-md-6 myProjects-item filter-app ">
+                    <div class="myProjects-wrap ">
+                        <img src="assets/img/projects/vshop.png" class="img-fluid " alt=" ">
+                        <div class="myProjects-info ">
+                            <h2 style="font-weight:bold; ">vShop</h2>
+                            <p style="font-weight:bold; ">Java | XML | Firebase</p>
+                            <div class="myProjects-links ">
+                                <a href="https://github.com/kathuriabhinav/vshop" title="Github Link "><i
+                                        class="bi bi-github "></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 myProjects-item filter-app ">
+                    <div class="myProjects-wrap ">
+                        <img src="assets/img/projects/job_portal.png" class="img-fluid " alt=" ">
+                        <div class="myProjects-info ">
+                            <h2 style="font-weight:bold; ">Job Portal</h2>
+                            <p style="font-weight:bold; ">Java Swing | MySQL | OOPS</p>
+                            <div class="myProjects-links ">
+                                <a href="https://github.com/kathuriabhinav/job_portal" title="Github Link "><i
+                                        class="bi bi-github "></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 myProjects-item filter-app ">
+                    <div class="myProjects-wrap ">
+                        <img src="assets/img/projects/iot_weather_station.jpg " class="img-fluid " alt=" ">
+                        <div class="myProjects-info ">
+                            <h2 style="font-weight:bold; ">IOT Weather Station</h2>
+                            <p style="font-weight:bold; ">Java | XML | Firebase | IOT</p>
+                            <div class="myProjects-links ">
+                                <a href="https://github.com/kathuriabhinav/iot_weather_station" title="Github Link "><i
+                                        class="bi bi-github "></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 myProjects-item filter-app ">
+                    <div class="myProjects-wrap ">
+                        <img src="assets/img/projects/student_inattentiveness_detection.jpg" class="img-fluid " alt=" ">
+                        <div class="myProjects-info ">
+                            <h2 style="font-weight:bold; ">Student Inattentiveness Detection</h2>
+                            <p style="font-weight:bold; ">Python | OpenCV | Tensorflow | Keras</p>
+                            <div class="myProjects-links ">
+                                <a href="https://github.com/kathuriabhinav/student_inattentiveness_detection"
+                                    target="_blank " title="Github Link "><i class="bi bi-github "></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 myProjects-item filter-app ">
+                    <div class="myProjects-wrap ">
+                        <img src="assets/img/projects/access_restriction_system.jpg" class="img-fluid " alt=" ">
+                        <div class="myProjects-info ">
+                            <h2 style="font-weight:bold; ">Access Restriction System</h2>
+                            <p style="font-weight:bold; ">Java Swing | MySQL | OOPS</p>
+                            <div class="myProjects-links ">
+                                <a href="https://github.com/kathuriabhinav/access_restriction_system" target="_blank "
+                                    title="Github Link "><i class="bi bi-github "></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="col-lg-4 col-md-6 myProjects-item filter-app ">
+                    <div class="myProjects-wrap ">
+                        <img src="assets/img/projects/ivp_proctoring_system.jpg" class="img-fluid " alt=" ">
+                        <div class="myProjects-info ">
+                            <h2 style="font-weight:bold; ">Online Proctoring System</h2>
+                            <p style="font-weight:bold; ">Python | OpenCV | Tensorflow | Keras</p>
+                            <div class="myProjects-links ">
+                                <a href="https://github.com/kathuriabhinav/ivp_proctoring_system" target="_blank "
+                                    title="Github Link "><i class="bi bi-github "></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="col-lg-4 col-md-6 myProjects-item filter-app ">
+                    <div class="myProjects-wrap ">
+                        <img src="assets/img/projects/hvac_monitoring_system.jpg" class="img-fluid " alt=" ">
+                        <div class="myProjects-info ">
+                            <h2 style="font-weight:bold; ">HVAC Monitoring System</h2>
+                            <p style="font-weight:bold; ">Native Android | Java | XML | MongoDB</p>
+                            <div class="myProjects-links ">
+                                <a href="https://github.com/kathuriabhinav/hvac_monitoring_system" target="_blank "
+                                    title="Github Link "><i class="bi bi-github "></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+
+    <section id="achievements" class="testimonials ">
+        <div class="container " data-aos="fade-up ">
+
+            <header class="section-header ">
+                <img src="assets/img/empty.png " alt=" " />
+                <p><span style="font-family: Nunito, sans-serif; "><i class="bi bi-trophy "></i> ACHIEVEMENTS
+                    </span></p>
+            </header>
+
+            <div class="testimonials-slider swiper " data-aos="fade-up " data-aos-delay="200 ">
+                <div class="swiper-wrapper ">
+
+
+                    <div class="swiper-slide ">
+                        <div class="testimonial-item ">
+                            <div class="stars ">
+                                <i class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i
+                                    class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i
+                                    class="bi bi-star-fill "></i>
+                            </div>
+                            <p style="font-weight:bold; " class="mt-5 "> Global Ranked 517 out of 6900+
+                                participants in September Cook-Off 2021 </p>
+                            <div class="profile ">
+                                <img src="assets/img/CODECHEF.jpg " class="testimonial-img " alt=" ">
+                                <h3>CODECHEF</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide ">
+                        <div class="testimonial-item ">
+                            <div class="stars ">
+                                <i class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i
+                                    class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i
+                                    class="bi bi-star-fill "></i>
+                            </div>
+                            <p style="font-weight:bold; " class="mt-5 "> Global Ranked 3862 out of 16000+
+                                participants in Round 745 </p>
+                            <div class="profile ">
+                                <img src="assets/img/CODEFORCES.jpg " class="testimonial-img " alt=" ">
+                                <h3>CODEFORCES</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide ">
+                        <div class="testimonial-item ">
+                            <div class="stars ">
+                                <i class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i
+                                    class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i
+                                    class="bi bi-star-fill "></i>
+                            </div>
+                            <p style="font-weight:bold; " class="mt-5 "> Global Ranked 4219 out of 9100+
+                                participants in Biweekly 61 </p>
+                            <div class="profile ">
+                                <img src="assets/img/LEETCODE.png " class="testimonial-img " alt=" ">
+                                <h3>LEETCODE</h3>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="swiper-slide ">
+                        <div class="testimonial-item ">
+                            <div class="stars ">
+                                <i class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i
+                                    class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i
+                                    class="bi bi-star-fill "></i>
+                            </div>
+                            <p style="font-weight:bold; " class="mt-5 "> Global Ranked 492 out of 7500+
+                                participants in August Lunchtime 2021 </p>
+                            <div class="profile ">
+                                <img src="assets/img/CODECHEF.jpg " class="testimonial-img " alt=" ">
+                                <h3>CODECHEF</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide ">
+                        <div class="testimonial-item ">
+                            <div class="stars ">
+                                <i class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i
+                                    class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i
+                                    class="bi bi-star-fill "></i>
+                            </div>
+                            <p style="font-weight:bold; " class="mt-5 "> Global Ranked 3714 out of 22500+
+                                participants in Round 751 </p>
+                            <div class="profile ">
+                                <img src="assets/img/CODEFORCES.jpg " class="testimonial-img " alt=" ">
+                                <h3>CODEFORCES</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide ">
+                        <div class="testimonial-item ">
+                            <div class="stars ">
+                                <i class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i
+                                    class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i
+                                    class="bi bi-star-fill "></i>
+                            </div>
+                            <p style="font-weight:bold; " class="mt-5 "> Global Ranked 271 out of 2500+
+                                participants in Starters 41 </p>
+                            <div class="profile ">
+                                <img src="assets/img/CODECHEF.jpg " class="testimonial-img " alt=" ">
+                                <h3>CODECHEF</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide ">
+                        <div class="testimonial-item ">
+                            <div class="stars ">
+                                <i class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i
+                                    class="bi bi-star-fill "></i><i class="bi bi-star-fill "></i><i
+                                    class="bi bi-star-fill "></i>
+                            </div>
+                            <p style="font-weight:bold; " class="mt-5 "> Global Ranked 3530 out of 7000+
+                                participants in Kickstart Round E 2021 </p>
+                            <div class="profile ">
+                                <img src="assets/img/GOOGLE.jpg " class="testimonial-img " alt=" ">
+                                <h3>KICKSTART</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="swiper-pagination "></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+
+    <section id="skills" class="mySkills">
+        <div class="container-fluid" data-aos="fade-up">
+
+            <header class="section-header">
+                <img src="assets/img/empty.png " alt=" " />
+                <p><span style="font-family: Nunito, sans-serif;"> MY SKILLS </span>
+                </p>
+            </header>
+
+            <div class="row" data-aos="fade-left">
+
+
+                <div class=" col-12 mt-5 " align="center" data-aos=" fade-right " data-aos-delay=" 100 ">
+                    <div>
+                        <img src=" assets/img/DBMS.png " class=" img-fluid " alt=" ">
+                    </div>
+                </div>
+
+                <div class="col-12" align="center" data-aos="fade-left" data-aos-delay="100">
+                    <div>
+                        <img src="assets/img/AppDev.png " class="img-fluid" alt=" ">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact ">
+
+        <div class="container " data-aos="fade-up ">
+
+            <header class="section-header ">
+                <p><span style="font-family: Nunito, sans-serif; ">GET IN TOUCH</span></p>
+            </header>
+
+            <div class="row gy-4 ">
+                <div class="col ">
+                    <div class="row gy-4 ">
+                        <div class="col-md-4 ">
+                            <div class="info-box ">
+                                <i class="bi bi-envelope "></i>
+                                <h3>Drop a Mail</h3>
+                                <p>kathuriabhinav@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <div class="info-box ">
+                                <i class="bi bi-geo-alt "></i>
+                                <h3>Address</h3>
+                                <p>Boath-B, Adilabad, Telangana, India</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row gy-4 m-2 " id="mobileSocial ">
+                        <div class="col-md-1 col-3 " align="center ">
+                            <a href="https://www.facebook.com/kathuriabhinav" target="_blank"><i class="bi bi-facebook "
+                                    style="font-size:30px; color:black; "></i></a>
+                        </div>
+                        <div class="col-md-1 col-3 " align="center ">
+                            <a href="https://www.linkedin.com/in/kathuriabhinav" target="_blank"><i
+                                    class="bi bi-linkedin " style="font-size:30px; color:black; "></i></a>
+                        </div>
+                        <div class="col-md-1 col-3 " align="center ">
+                            <a href="https://twitter.com/kathuriabhinav" target="_blank"><i class="bi bi-twitter "
+                                    style="font-size:30px; color:black; "></i></a>
+                        </div>
+                        <div class="col-md-1 col-3 " align="center ">
+                            <a href="https://github.com/kathuriabhinav" target="_blank"><i class="bi bi-github "
+                                    style="font-size:30px; color:black; "></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Footer Section -->
+
+    <!-- <footer id="footer " class="footer ">
+                <div class="container ">
+                    <div class="copyright ">Designed with <i class="bi bi-heart " style="color:red; "></i> by <strong><span> Kathuri Abhinav</span></strong>
+                    </div>
+                </div>
+            </footer> -->
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter.js "></script>
+    <script src="assets/vendor/aos/aos.js "></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js "></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js "></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js "></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js "></script>
+    <script src="assets/vendor/php-email-form/validate.js "></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js "></script>
+
+</body>
+
+</html>
