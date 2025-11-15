@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abhinav | Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {
+      font-family: "Poppins", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    :root {
+      --bg: #f5f6fa;
+      --text: #2d2d2d;
+      --card-bg: #ffffff;
+    }
+    .dark {
+      --bg: #0f172a;
+      --text: #e2e8f0;
+      --card-bg: #1e293b;
+    }
+
+    .toggle-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    #darkToggle {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
+      background: linear-gradient(135deg, #edf2ff, #e2e8f0);
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 3rem;
+      border-radius: 18px;
+      max-width: 650px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {font-size: 2.8rem; color: #1e3a8a; margin-bottom: 0.5rem;}
+    h2 {font-size: 1.3rem; color: #475569; margin-bottom: 1.5rem;}
+    p {margin-bottom: 1rem; color: #64748b;}
+
+    .social-links a {
+      margin: 0 0.8rem;
+      font-size: 1.4rem;
+      color: #64748b;
+      transition: 0.3s;
+    }
+    .social-links a:hover {color: #2563eb;}
+
+    @media (max-width: 600px) {
+      .card {padding: 2rem;}
+      h1 {font-size: 2.2rem;}
+      h2 {font-size: 1.1rem;}
+    }
+      /* Dark mode heading contrast */
+    .dark h1 { color: #93c5fd; }
+    .dark h2 { color: #bfdbfe; }
+
+    /* Stronger dark hero gradient */
+    .dark .hero {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+    }
+
+    /* Dark-mode-specific card shadow */
+    .dark .card {
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6);
+    }
+
+/* Icon animation */
+    #darkToggle i {
+      transition: transform 0.4s ease, opacity 0.3s ease;
+    }
+    #darkToggle i.rotate {
+      transform: rotate(180deg);
+      opacity: 0.8;
+    }
+</style>
+</head>
+
+<body>
+  <div class="toggle-container">
+    <button id="darkToggle"><i class="fas fa-moon"></i></button>
+  </div>
+
+  <section class="hero">
+    <div class="card">
+      <h1>Kathuri Abhinav</h1>
+      <h2>SDE-2 at Alteryx</h2>
+      <p>Software engineer with strong experience in backend systems, full‑stack development, and scalable design.</p>
+      <p>Graduate of IIIT Allahabad, 2023.</p>
+
+      <div class="contact-info" style="margin-top:1.5rem;">
+        <p><i class="fas fa-envelope"></i> kathuriabhinav@gmail.com</p>
+        <p><i class="fas fa-phone"></i> +91 9640876048</p>
+      </div>
+
+      <div class="social-links" style="margin-top:1.5rem;">
+        <a href="https://github.com/kathuriabhinav" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/kathuriabhinav/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://leetcode.com/u/kathuriabhinav/" target="_blank"><i class="fas fa-code"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const body = document.body;
+    const icon = document.querySelector('#darkToggle i');
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      body.classList.add('dark');
+      icon.classList.replace('fa-moon', 'fa-sun');
+    }
+
+    document.getElementById('darkToggle').onclick = () => {
+      body.classList.toggle('dark');
+      icon.classList.add('rotate');
+      setTimeout(() => icon.classList.remove('rotate'), 400);
+
+      if (body.classList.contains('dark')) {
+        icon.classList.replace('fa-moon', 'fa-sun');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        icon.classList.replace('fa-sun', 'fa-moon');
+        localStorage.setItem('theme', 'light');
+      }
+    };
+  </script>
+</body>
+</html>
