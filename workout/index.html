@@ -10,7 +10,7 @@
       }
 
       body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         background: #f4f4f9;
         color: #333;
         max-width: 900px;
@@ -31,17 +31,17 @@
         background-color: #ffffff;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         padding: 0 0 1rem;
-        
+
         display: grid;
         grid-template-columns: 1fr;
-        gap: 0; 
+        gap: 0;
       }
 
       h2 {
         text-align: center;
         background: #007bff;
         color: white;
-        padding: 1rem 0 0.75rem 0; 
+        padding: 1rem 0 0.75rem 0;
         margin-top: 0;
         margin-bottom: 0;
         border-radius: 8px 8px 0 0;
@@ -53,8 +53,8 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
-        
-        margin: 0.75rem 0.5rem 0 0.5rem; 
+
+        margin: 0.75rem 0.5rem 0 0.5rem;
         background: #fcfcfc;
         border-radius: 6px;
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
@@ -63,8 +63,8 @@
       }
 
       .exercise img {
-        width: 100%; 
-        height: 180px; 
+        width: 100%;
+        height: 180px;
         object-fit: contain;
         background: #fff;
         padding: 10px;
@@ -87,16 +87,22 @@
       .exercise-details .sets {
         color: #555;
         font-size: 0.95rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .exercise-details .target {
+        color: #777;
+        font-size: 0.9rem;
       }
 
       @media (min-width: 768px) {
         .day {
           grid-template-columns: 1fr 1fr;
-          padding: 1rem; 
-          gap: 0.5rem; 
+          padding: 1rem;
+          gap: 0.5rem;
         }
         .exercise {
-            margin: 0;
+          margin: 0;
         }
       }
     </style>
@@ -105,51 +111,227 @@
   <body>
     <h1>Workout Plan</h1>
 
-    <div id="workout-plan-container">
-      </div>
+    <div id="workout-plan-container"></div>
 
     <script>
       const workoutData = {
-        'Day 1 - Push': [
-          { name: 'Dumbbell Bench Press', sets: '4 × 10', img: 'https://training.fit/wp-content/uploads/2019/07/bankdruecken-kurzhantel-flachbank-800x448.png' },
-          { name: 'Overhead Shoulder Press', sets: '3 × 10', img: 'https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-standing-overhead-press.jpg' },
-          { name: 'Lateral Raise', sets: '3 × 10', img: 'https://training.fit/wp-content/uploads/2020/03/seitenheben-kurzhanteln-800x448.png' },
-          { name: 'Lying Dumbbell Extension', sets: '3 × 10', img: 'https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-lying-single-extension.jpg' },
-          { name: 'Tricep Pushdown', sets: '3 × 10', img: 'https://trainingstation.co.uk/cdn/shop/articles/Tricep-pushdown-movement_ddb8dbd8-566d-4f55-99e0-36c35790234a_1400x.png?v=1739005533' },
-          { name: 'Incline Dumbbell Press', sets: '3 × 10', img: 'https://fitliferegime.com/wp-content/uploads/2023/10/Incline-Dumbbell-Press-Muscles-Worked.jpg' }
+        "Day 1 - Push": [
+          {
+            name: "Dumbbell Bench Press",
+            sets: "4 × 10",
+            img: "https://training.fit/wp-content/uploads/2019/07/bankdruecken-kurzhantel-flachbank-800x448.png",
+            targetMuscles: "Chest (pectoralis major), anterior delts, triceps",
+          },
+          {
+            name: "Incline Dumbbell Press",
+            sets: "3 × 8",
+            img: "https://fitliferegime.com/wp-content/uploads/2023/10/Incline-Dumbbell-Press-Muscles-Worked.jpg",
+            targetMuscles:
+              "Upper chest (clavicular head), anterior delts, triceps",
+          },
+          {
+            name: "Overhead Shoulder Press",
+            sets: "3 × 8",
+            img: "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-standing-overhead-press.jpg",
+            targetMuscles:
+              "Anterior and middle delts, triceps, upper traps (stabilizer)",
+          },
+          {
+            name: "Lateral Raise",
+            sets: "3 × 12",
+            img: "https://training.fit/wp-content/uploads/2020/03/seitenheben-kurzhanteln-800x448.png",
+            targetMuscles:
+              "Middle delts (side shoulders), upper traps (assist)",
+          },
+          {
+            name: "Lying Dumbbell Extension",
+            sets: "3 × 10",
+            img: "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-lying-single-extension.jpg",
+            targetMuscles: "Triceps (long head emphasis, all heads involved)",
+          },
+          {
+            name: "Tricep Pushdown",
+            sets: "3 × 12",
+            img: "https://trainingstation.co.uk/cdn/shop/articles/Tricep-pushdown-movement_ddb8dbd8-566d-4f55-99e0-36c35790234a_1400x.png?v=1739005533",
+            targetMuscles: "Triceps (all heads, emphasis on lateral head)",
+          },
         ],
-        'Day 2 - Pull': [
-          { name: 'Lat Pulldown', sets: '4 × 10', img: 'https://training.fit/wp-content/uploads/2020/02/latzug.png' },
-          { name: 'Bent-over Barbell Row', sets: '3 × 10', img: 'https://liftmanual.com/wp-content/uploads/2023/04/barbell-bent-over-wide-grip-row.jpg' },
-          { name: 'Incline Rear Delt Fly', sets: '3 × 10', img: 'https://fitliferegime.com/wp-content/uploads/2023/06/Dumbbell-Rear-Delt-Fly.jpg' },
-          { name: 'Dumbbell Bicep Curl', sets: '3 × 10', img: 'https://training.fit/wp-content/uploads/2018/12/bizepscurls.png' },
-          { name: 'Hammer Curl', sets: '2 × 10', img: 'https://training.fit/wp-content/uploads/2020/02/bizeps-hammercurls-800x448.png' },
-          { name: 'Face Pull', sets: '3 × 10', img: 'https://liftmanual.com/wp-content/uploads/2023/04/cable-standing-face-pull.jpg' }
+
+        "Day 2 - Pull": [
+          {
+            name: "Lat Pulldown",
+            sets: "4 × 10",
+            img: "https://training.fit/wp-content/uploads/2020/02/latzug.png",
+            targetMuscles: "Lats (primary), mid-back, biceps",
+          },
+          {
+            name: "Bent-over Barbell Row",
+            sets: "3 × 8",
+            img: "https://liftmanual.com/wp-content/uploads/2023/04/barbell-bent-over-wide-grip-row.jpg",
+            targetMuscles:
+              "Mid-back (rhomboids, traps), lats, rear delts, biceps",
+          },
+          {
+            name: "Face Pull",
+            sets: "3 × 12",
+            img: "https://liftmanual.com/wp-content/uploads/2023/04/cable-standing-face-pull.jpg",
+            targetMuscles:
+              "Rear delts, external rotators (infraspinatus, teres minor), mid and lower traps, rhomboids",
+          },
+          {
+            name: "Incline Rear Delt Fly",
+            sets: "3 × 12",
+            img: "https://fitliferegime.com/wp-content/uploads/2023/06/Dumbbell-Rear-Delt-Fly.jpg",
+            targetMuscles:
+              "Rear delts (primary), upper back (rhomboids, traps)",
+          },
+          {
+            name: "Dumbbell Bicep Curl",
+            sets: "3 × 10",
+            img: "https://training.fit/wp-content/uploads/2018/12/bizepscurls.png",
+            targetMuscles: "Biceps brachii, brachialis",
+          },
+          {
+            name: "Hammer Curl",
+            sets: "2 × 10",
+            img: "https://training.fit/wp-content/uploads/2020/02/bizeps-hammercurls-800x448.png",
+            targetMuscles: "Brachialis, brachioradialis, biceps",
+          },
         ],
-        'Day 3 - Legs': [
-          { name: 'Barbell Squat', sets: '4 × 10', img: 'https://training.fit/wp-content/uploads/2020/03/kniebeugen-langhantel.png' },
-          { name: 'Leg Press', sets: '3 × 10', img: 'https://fitnessvolt.com/wp-content/uploads/2018/04/Anatomy-of-Incline-Leg-Press-750x305.jpg' },
-          { name: 'Lying Leg Curl', sets: '3 × 10', img: 'https://training.fit/wp-content/uploads/2020/03/beinbeugen-liegend-geraet.png' },
-          { name: 'Leg Extension', sets: '3 × 10', img: 'https://liftmanual.com/wp-content/uploads/2023/04/lever-leg-extension.jpg' },
-          { name: 'Standing Calf Raise', sets: '3 × 10', img: 'https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-standing-calf-raise.jpg' },
-          { name: 'Walking Lunges', sets: '2 × 10 each leg', img: 'https://trainingstation.co.uk/cdn/shop/articles/Lunges-movment_d958998d-2a9f-430e-bdea-06f1e2bcc835_900x.webp?v=1741687877' }
+
+        "Day 3 - Legs": [
+          {
+            name: "Barbell Squat",
+            sets: "4 × 8",
+            img: "https://training.fit/wp-content/uploads/2020/03/kniebeugen-langhantel.png",
+            targetMuscles:
+              "Quads (primary), glutes, adductors, core (stabilizers)",
+          },
+          {
+            name: "Leg Press",
+            sets: "3 × 10",
+            img: "https://fitnessvolt.com/wp-content/uploads/2018/04/Anatomy-of-Incline-Leg-Press-750x305.jpg",
+            targetMuscles: "Quads (primary), glutes, some hamstrings",
+          },
+          {
+            name: "Romanian Deadlift",
+            sets: "3 × 8",
+            img: "https://training.fit/wp-content/uploads/2020/03/kreuzheben-gestreckte-beine.png",
+            targetMuscles: "Hamstrings, glutes, lower back (isometric)",
+          },
+          {
+            name: "Lying Leg Curl",
+            sets: "3 × 12",
+            img: "https://training.fit/wp-content/uploads/2020/03/beinbeugen-liegend-geraet.png",
+            targetMuscles: "Hamstrings",
+          },
+          {
+            name: "Leg Extension",
+            sets: "2 × 12",
+            img: "https://liftmanual.com/wp-content/uploads/2023/04/lever-leg-extension.jpg",
+            targetMuscles:
+              "Quads (rectus femoris, vastus lateralis/medialis/intermedius)",
+          },
+          {
+            name: "Standing Calf Raise",
+            sets: "3 × 12",
+            img: "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-standing-calf-raise.jpg",
+            targetMuscles: "Calves (gastrocnemius-dominant, some soleus)",
+          },
+          {
+            name: "Walking Lunges",
+            sets: "2 × 10 each leg",
+            img: "https://trainingstation.co.uk/cdn/shop/articles/Lunges-movment_d958998d-2a9f-430e-bdea-06f1e2bcc835_900x.webp?v=1741687877",
+            targetMuscles: "Quads, glutes, hamstrings, hip stabilizers",
+          },
         ],
-        'Day 4 - Full Upper': [
-          { name: 'Dumbell Bench Press', sets: '3 × 10', img: 'https://training.fit/wp-content/uploads/2019/07/bankdruecken-kurzhantel-flachbank-800x448.png' },
-          { name: 'Chest-Supported Row', sets: '3 × 10', img: 'https://cdn.shopify.com/s/files/1/0449/8453/3153/files/chest_supported_row_muscles_worked_600x600.png?v=1716192902' },
-          { name: 'Overhead Shoulder Press', sets: '3 × 10', img: 'https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-standing-overhead-press.jpg' },
-          { name: 'Close-Grip Lat Pulldown', sets: '3 × 10', img: 'https://www.burnthefatinnercircle.com/members/images/1708.jpg?cb=20250701051148' },
-          { name: 'Cable Lateral Raise', sets: '2 × 10', img: 'https://liftmanual.com/wp-content/uploads/2023/04/cable-one-arm-lateral-raise.jpg' },
-          { name: 'Dumbbell Bicep Curl', sets: '3 × 10', img: 'https://training.fit/wp-content/uploads/2018/12/bizepscurls.png' },
-          { name: 'Rope Tricep Extension', sets: '2 × 10', img: 'https://www.hevyapp.com/wp-content/uploads/02001101-Cable-Pushdown-with-rope-attachment_Upper-Arms_small.jpg' }
+
+        "Day 4 - Upper Accents": [
+          {
+            name: "Dumbbell Bench Press",
+            sets: "3 × 8",
+            img: "https://training.fit/wp-content/uploads/2019/07/bankdruecken-kurzhantel-flachbank-800x448.png",
+            targetMuscles: "Chest, anterior delts, triceps",
+          },
+          {
+            name: "Chest-Supported Row",
+            sets: "3 × 10",
+            img: "https://cdn.shopify.com/s/files/1/0449/8453/3153/files/chest_supported_row_muscles_worked_600x600.png?v=1716192902",
+            targetMuscles: "Mid-back (rhomboids, traps), lats, rear delts",
+          },
+          {
+            name: "Overhead Shoulder Press",
+            sets: "2 × 8",
+            img: "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-standing-overhead-press.jpg",
+            targetMuscles:
+              "Anterior and middle delts, triceps, upper traps (stabilizer)",
+          },
+          {
+            name: "Close-Grip Lat Pulldown",
+            sets: "3 × 10",
+            img: "https://www.burnthefatinnercircle.com/members/images/1708.jpg?cb=20250701051148",
+            targetMuscles: "Lats (primary), mid-back, biceps",
+          },
+          {
+            name: "Cable Lateral Raise",
+            sets: "2 × 12",
+            img: "https://liftmanual.com/wp-content/uploads/2023/04/cable-one-arm-lateral-raise.jpg",
+            targetMuscles:
+              "Middle delts (side shoulders), upper traps (assist)",
+          },
+          {
+            name: "Dumbbell Bicep Curl",
+            sets: "2 × 10",
+            img: "https://training.fit/wp-content/uploads/2018/12/bizepscurls.png",
+            targetMuscles: "Biceps brachii, brachialis",
+          },
+          {
+            name: "Rope Tricep Extension",
+            sets: "2 × 12",
+            img: "https://www.hevyapp.com/wp-content/uploads/02001101-Cable-Pushdown-with-rope-attachment_Upper-Arms_small.jpg",
+            targetMuscles: "Triceps (all heads, with long head emphasis)",
+          },
         ],
-        'Day 5 - Full Lower': [
-          { name: 'Dumbbell Goblet Squat', sets: '3 × 10', img: 'https://anabolicaliens.com/cdn/shop/articles/5fbc1c1889a1d8fc84f5808b_dumbbell-goblet-squat.png?v=1641750308' },
-          { name: 'Hip Thrust or Glute Bridge', sets: '3 × 10', img: 'https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-hip-thrust.jpg' },
-          { name: 'Seated Leg Curl', sets: '3 × 10', img: 'https://liftmanual.com/wp-content/uploads/2023/04/lever-seated-leg-curl.jpg' },
-          { name: 'Dumbbell Split Squat', sets: '2 × 10 each leg', img: 'https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-split-squat.jpg' },
-          { name: 'Standing Calf Raise', sets: '3 × 10', img: 'https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-standing-calf-raise.jpg' }
-        ]
+
+        "Day 5 - Lower Accents": [
+          {
+            name: "Dumbbell Goblet Squat",
+            sets: "3 × 12",
+            img: "https://anabolicaliens.com/cdn/shop/articles/5fbc1c1889a1d8fc84f5808b_dumbbell-goblet-squat.png?v=1641750308",
+            targetMuscles: "Quads (primary), glutes, core (stabilizers)",
+          },
+          {
+            name: "Hip Thrust or Glute Bridge",
+            sets: "3 × 10",
+            img: "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-hip-thrust.jpg",
+            targetMuscles: "Glutes (primary), hamstrings",
+          },
+          {
+            name: "Seated Leg Curl",
+            sets: "3 × 12",
+            img: "https://liftmanual.com/wp-content/uploads/2023/04/lever-seated-leg-curl.jpg",
+            targetMuscles: "Hamstrings",
+          },
+          {
+            name: "Dumbbell Split Squat",
+            sets: "2 × 10 each leg",
+            img: "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-split-squat.jpg",
+            targetMuscles: "Quads, glutes, hip stabilizers",
+          },
+          {
+            name: "Standing Calf Raise",
+            sets: "3 × 12",
+            img: "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-standing-calf-raise.jpg",
+            targetMuscles: "Calves (gastrocnemius-dominant, some soleus)",
+          },
+          {
+            name: "Plank",
+            sets: "3 × 45s",
+            img: "https://liftmanual.com/wp-content/uploads/2023/04/plank-on-hands.jpg",
+            targetMuscles:
+              "Core (rectus abdominis, obliques, transverse abdominis, spinal stabilizers)",
+          },
+        ],
       };
 
       function createExerciseHTML(exercise) {
@@ -159,35 +341,34 @@
             <div class="exercise-details">
               <div class="name">${exercise.name}</div>
               <div class="sets">${exercise.sets}</div>
+              <div class="target">${exercise.targetMuscles}</div>
             </div>
           </div>
         `;
       }
 
       function generateWorkoutPlan() {
-        const container = document.getElementById('workout-plan-container');
-        let htmlContent = '';
+        const container = document.getElementById("workout-plan-container");
+        let htmlContent = "";
 
         for (const dayTitle in workoutData) {
           if (workoutData.hasOwnProperty(dayTitle)) {
             const exercises = workoutData[dayTitle];
             let dayHTML = `<section class="day"><h2>${dayTitle}</h2>`;
-            
-            // Loop through exercises and use the template function
-            exercises.forEach(exercise => {
+
+            exercises.forEach((exercise) => {
               dayHTML += createExerciseHTML(exercise);
             });
 
-            dayHTML += '</section>';
+            dayHTML += "</section>";
             htmlContent += dayHTML;
           }
         }
-        
+
         container.innerHTML = htmlContent;
       }
 
-      // Run the generation function when the page loads
-      document.addEventListener('DOMContentLoaded', generateWorkoutPlan);
+      document.addEventListener("DOMContentLoaded", generateWorkoutPlan);
     </script>
   </body>
 </html>
