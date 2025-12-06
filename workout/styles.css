@@ -1,4 +1,6 @@
-/* GLOBAL ---------------------------------------------------- */
+/* ----------------------------------------------------------
+   GLOBAL BASE
+---------------------------------------------------------- */
 
 body {
   margin: 0;
@@ -13,7 +15,16 @@ body {
   /* ensure last card visible above footer */
 }
 
-/* HEADER ---------------------------------------------------- */
+@media (min-width: 820px) {
+  .app-shell {
+    max-width: 1000px;
+    margin: auto;
+  }
+}
+
+/* ----------------------------------------------------------
+   HEADER
+---------------------------------------------------------- */
 
 .header {
   text-align: center;
@@ -26,7 +37,9 @@ h1 {
   font-weight: 700;
 }
 
-/* DAY TABS -------------------------------------------------- */
+/* ----------------------------------------------------------
+   DAY TABS
+---------------------------------------------------------- */
 
 .day-tabs {
   display: flex;
@@ -57,34 +70,61 @@ h1 {
   background: rgba(255, 255, 255, 0.12);
 }
 
-/* EXERCISE CARDS -------------------------------------------- */
+/* ----------------------------------------------------------
+   CARDS AREA (LIST)
+---------------------------------------------------------- */
 
 .cards-area {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-  margin-bottom: 0.85rem;
+  margin-bottom: 1rem;
 }
+
+@media (min-width: 820px) {
+  .cards-area {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.4rem;
+  }
+}
+
+/* ----------------------------------------------------------
+   EXERCISE CARD
+---------------------------------------------------------- */
 
 .exercise-card {
   border-radius: 22px;
   background: rgba(40, 40, 52, 0.78);
   border: 1px solid rgba(255, 255, 255, 0.06);
   padding: 1rem;
-  transition: box-shadow 0.25s ease, background 0.25s ease;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
   backdrop-filter: blur(10px);
+}
+
+/* Hover elevation for desktop */
+@media (min-width: 820px) {
+  .exercise-card {
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.28);
+  }
+
+  .exercise-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.38);
+  }
 }
 
 .exercise-card.expanded {
   background: rgba(52, 52, 65, 0.88);
-  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
 }
 
 .exercise-card.done {
   opacity: 0.62;
 }
 
-/* TITLE + IMG + META ---------------------------------------- */
+/* ----------------------------------------------------------
+   CARD CONTENT
+---------------------------------------------------------- */
 
 .exercise-main {
   display: flex;
@@ -92,6 +132,7 @@ h1 {
   gap: 0.45rem;
 }
 
+/* Thumbnail */
 .exercise-thumb {
   background: #ffffff;
   border-radius: 16px;
@@ -108,12 +149,20 @@ h1 {
   object-fit: contain;
 }
 
+@media (min-width: 820px) {
+  .exercise-thumb {
+    height: 130px;
+  }
+}
+
+/* Title */
 .exercise-title {
   font-size: 1rem;
   font-weight: 600;
   color: #fff;
 }
 
+/* Meta Pills */
 .exercise-meta {
   display: flex;
   align-items: center;
@@ -134,19 +183,28 @@ h1 {
   font-size: 0.75rem;
 }
 
-/* INTERACTIVE “DONE PILL” ---------------------------------- */
+/* ----------------------------------------------------------
+   DONE PILL + CHEVRON
+---------------------------------------------------------- */
 
+.pill-row {
+  margin-top: 0.35rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+/* Done pill */
 .done-pill {
-  margin-top: 0.3rem;
-  padding: 0.4rem 0.8rem;
+  padding: 0.45rem 0.9rem;
   border-radius: 999px;
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
-
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  justify-content: center;
 
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -166,15 +224,13 @@ h1 {
   transform: scale(0.95);
 }
 
-/* ROW: Done pill + Chevron --------------------------------- */
-.pill-row {
-  margin-top: 0.35rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.65rem;
+@media (min-width: 820px) {
+  .done-pill:hover {
+    background: rgba(46, 180, 70, 0.32);
+  }
 }
 
+/* Chevron */
 .details-chevron {
   font-size: 1.15rem;
   opacity: 0.75;
@@ -191,20 +247,28 @@ h1 {
   transform: rotate(180deg);
 }
 
-/* EXTRA DETAIL TEXT ---------------------------------------- */
+/* ----------------------------------------------------------
+   EXPANDABLE SECTION
+---------------------------------------------------------- */
 
 .exercise-extra {
-  display: none;
-  margin-top: 0.85rem;
   color: #ccc;
   line-height: 1.35;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.25s ease;
+  margin-top: 0.6rem;
 }
 
 .exercise-card.expanded .exercise-extra {
-  display: block;
+  max-height: 200px;
+  opacity: 1;
 }
 
-/* FOOTER ---------------------------------------------------- */
+/* ----------------------------------------------------------
+   FOOTER (FLOATING PILL)
+---------------------------------------------------------- */
 
 .footer-pill {
   position: fixed;
@@ -256,6 +320,7 @@ body.footer-expanded .reset-buttons {
   pointer-events: auto;
 }
 
+/* Reset buttons */
 .btn-reset-day,
 .btn-reset-week {
   padding: 0.55rem 1rem;
@@ -265,7 +330,6 @@ body.footer-expanded .reset-buttons {
   cursor: pointer;
 
   backdrop-filter: blur(10px);
-
   transition: background 0.22s ease, border-color 0.22s ease;
 }
 
@@ -281,6 +345,7 @@ body.footer-expanded .reset-buttons {
   border: 1px solid rgba(255, 90, 90, 0.6);
 }
 
+/* Progress text */
 .progress-day-label {
   font-size: 0.95rem;
   font-weight: 600;
