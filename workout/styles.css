@@ -1,0 +1,308 @@
+/* GLOBAL ---------------------------------------------------- */
+
+body {
+  margin: 0;
+  background: #0c0c11;
+  color: #f1f1f1;
+  font-family: system-ui, sans-serif;
+}
+
+.app-shell {
+  padding: 1rem;
+  padding-bottom: 12rem;
+  /* ensure last card visible above footer */
+}
+
+/* HEADER ---------------------------------------------------- */
+
+.header {
+  text-align: center;
+  padding: 0.5rem 0 1.25rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+/* DAY TABS -------------------------------------------------- */
+
+.day-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.day-chip {
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: #ddd;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.day-chip.active {
+  background: rgba(0, 122, 255, 0.38);
+  border-color: rgba(0, 122, 255, 0.6);
+  color: #fff;
+}
+
+.day-chip:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* EXERCISE CARDS -------------------------------------------- */
+
+.cards-area {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 0.85rem;
+}
+
+.exercise-card {
+  border-radius: 22px;
+  background: rgba(40, 40, 52, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 1rem;
+  transition: box-shadow 0.25s ease, background 0.25s ease;
+  backdrop-filter: blur(10px);
+}
+
+.exercise-card.expanded {
+  background: rgba(52, 52, 65, 0.88);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
+}
+
+.exercise-card.done {
+  opacity: 0.62;
+}
+
+/* TITLE + IMG + META ---------------------------------------- */
+
+.exercise-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.exercise-thumb {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 6px;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exercise-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.exercise-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.exercise-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.sets-pill {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+}
+
+.day-tag {
+  background: rgba(0, 122, 255, 0.32);
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+}
+
+/* INTERACTIVE “DONE PILL” ---------------------------------- */
+
+.done-pill {
+  margin-top: 0.3rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ccc;
+
+  transition: background 0.25s ease, border-color 0.25s ease,
+    color 0.25s ease, transform 0.15s ease;
+}
+
+.done-pill.done {
+  background: rgba(46, 180, 70, 0.22);
+  border-color: rgba(46, 180, 70, 0.55);
+  color: #6ef28c;
+}
+
+.done-pill:active {
+  transform: scale(0.95);
+}
+
+/* ROW: Done pill + Chevron --------------------------------- */
+.pill-row {
+  margin-top: 0.35rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.details-chevron {
+  font-size: 1.15rem;
+  opacity: 0.75;
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.details-chevron:hover {
+  opacity: 1;
+}
+
+.exercise-card.expanded .details-chevron {
+  transform: rotate(180deg);
+}
+
+/* EXTRA DETAIL TEXT ---------------------------------------- */
+
+.exercise-extra {
+  display: none;
+  margin-top: 0.85rem;
+  color: #ccc;
+  line-height: 1.35;
+}
+
+.exercise-card.expanded .exercise-extra {
+  display: block;
+}
+
+/* FOOTER ---------------------------------------------------- */
+
+.footer-pill {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 24px;
+  padding: 0 1rem;
+
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.footer-content {
+  width: 100%;
+  max-width: 750px;
+  border-radius: 24px;
+
+  background: rgba(22, 22, 28, 0.58);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+
+  padding: 1rem 1.1rem;
+  pointer-events: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  transition: height 0.3s ease, padding 0.3s ease;
+}
+
+.reset-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+
+  opacity: 0;
+  max-height: 0;
+  pointer-events: none;
+
+  transition: opacity 0.28s ease, max-height 0.28s ease;
+}
+
+body.footer-expanded .reset-buttons {
+  opacity: 1;
+  max-height: 200px;
+  pointer-events: auto;
+}
+
+.btn-reset-day,
+.btn-reset-week {
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  backdrop-filter: blur(10px);
+
+  transition: background 0.22s ease, border-color 0.22s ease;
+}
+
+.btn-reset-day {
+  background: rgba(255, 70, 70, 0.15);
+  color: #ff7a7a;
+  border: 1px solid rgba(255, 120, 120, 0.45);
+}
+
+.btn-reset-week {
+  background: rgba(255, 50, 50, 0.22);
+  color: #ff5a5a;
+  border: 1px solid rgba(255, 90, 90, 0.6);
+}
+
+.progress-day-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.progress-text {
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+/* Progress bar */
+.progress-bar-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: rgba(0, 122, 255, 0.55);
+  transition: width 0.25s ease;
+}

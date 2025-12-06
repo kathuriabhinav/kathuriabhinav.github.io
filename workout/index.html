@@ -1,374 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Workout Plan</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-      * {
-        box-sizing: border-box;
-      }
 
-      body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background: #f4f4f9;
-        color: #333;
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 1rem;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workout Plan</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
 
-      h1 {
-        text-align: center;
-        color: #007bff;
-        margin-bottom: 2rem;
-      }
+<body>
 
-      .day {
-        margin-bottom: 3.5rem;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        background-color: #ffffff;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        padding: 0 0 1rem;
+  <div class="app-shell">
 
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 0;
-      }
+    <header class="header">
+      <h1>Workout Plan</h1>
+    </header>
 
-      h2 {
-        text-align: center;
-        background: #007bff;
-        color: white;
-        padding: 1rem 0 0.75rem 0;
-        margin-top: 0;
-        margin-bottom: 0;
-        border-radius: 8px 8px 0 0;
-        grid-column: 1 / -1;
-      }
+    <div id="day-tabs" class="day-tabs"></div>
 
-      .exercise {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+    <main id="exercise-cards" class="cards-area"></main>
 
-        margin: 0.75rem 0.5rem 0 0.5rem;
-        background: #fcfcfc;
-        border-radius: 6px;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-        overflow: hidden;
-        border: 1px solid #eee;
-      }
+  </div>
 
-      .exercise img {
-        width: 100%;
-        height: 180px;
-        object-fit: contain;
-        background: #fff;
-        padding: 10px;
-        border-bottom: 1px solid #eee;
-        flex-shrink: 0;
-      }
+  <!-- Floating pill footer -->
+  <footer class="footer-pill">
+    <div class="footer-content">
 
-      .exercise-details {
-        padding: 1rem 0.8rem;
-        width: 100%;
-      }
+      <div class="footer-main">
+        <div id="progress-day-label" class="progress-day-label"></div>
+        <div id="progress-text" class="progress-text"></div>
 
-      .exercise-details .name {
-        font-weight: 700;
-        font-size: 1.1rem;
-        color: #222;
-        margin-bottom: 0.25rem;
-      }
+        <div class="progress-bar-track">
+          <div id="progress-fill" class="progress-bar-fill"></div>
+        </div>
+      </div>
 
-      .exercise-details .sets {
-        color: #555;
-        font-size: 0.95rem;
-        margin-bottom: 0.25rem;
-      }
+      <div class="reset-buttons">
+        <button id="reset-day-btn" class="btn-reset-day">Reset Progress for the Day</button>
+        <button id="reset-week-btn" class="btn-reset-week">Reset Progress for the Week</button>
+      </div>
 
-      .exercise-details .target {
-        color: #777;
-        font-size: 0.9rem;
-      }
+    </div>
+  </footer>
 
-      @media (min-width: 768px) {
-        .day {
-          grid-template-columns: 1fr 1fr;
-          padding: 1rem;
-          gap: 0.5rem;
-        }
-        .exercise {
-          margin: 0;
-        }
-      }
-    </style>
-  </head>
+  <script src="app.js"></script>
+</body>
 
-  <body>
-    <h1>Workout Plan</h1>
-
-    <div id="workout-plan-container"></div>
-
-    <script>
-      const workoutData = {
-        "Day 1 - Push": [
-          {
-            name: "Dumbbell Bench Press",
-            sets: "4 × 10",
-            img: "https://training.fit/wp-content/uploads/2019/07/bankdruecken-kurzhantel-flachbank-800x448.png",
-            targetMuscles: "Chest (pectoralis major), anterior delts, triceps",
-          },
-          {
-            name: "Incline Dumbbell Press",
-            sets: "3 × 8",
-            img: "https://fitliferegime.com/wp-content/uploads/2023/10/Incline-Dumbbell-Press-Muscles-Worked.jpg",
-            targetMuscles:
-              "Upper chest (clavicular head), anterior delts, triceps",
-          },
-          {
-            name: "Overhead Shoulder Press",
-            sets: "3 × 8",
-            img: "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-standing-overhead-press.jpg",
-            targetMuscles:
-              "Anterior and middle delts, triceps, upper traps (stabilizer)",
-          },
-          {
-            name: "Lateral Raise",
-            sets: "3 × 12",
-            img: "https://training.fit/wp-content/uploads/2020/03/seitenheben-kurzhanteln-800x448.png",
-            targetMuscles:
-              "Middle delts (side shoulders), upper traps (assist)",
-          },
-          {
-            name: "Lying Dumbbell Extension",
-            sets: "3 × 10",
-            img: "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-lying-single-extension.jpg",
-            targetMuscles: "Triceps (long head emphasis, all heads involved)",
-          },
-          {
-            name: "Tricep Pushdown",
-            sets: "3 × 12",
-            img: "https://trainingstation.co.uk/cdn/shop/articles/Tricep-pushdown-movement_ddb8dbd8-566d-4f55-99e0-36c35790234a_1400x.png?v=1739005533",
-            targetMuscles: "Triceps (all heads, emphasis on lateral head)",
-          },
-        ],
-
-        "Day 2 - Pull": [
-          {
-            name: "Lat Pulldown",
-            sets: "4 × 10",
-            img: "https://training.fit/wp-content/uploads/2020/02/latzug.png",
-            targetMuscles: "Lats (primary), mid-back, biceps",
-          },
-          {
-            name: "Bent-over Barbell Row",
-            sets: "3 × 8",
-            img: "https://liftmanual.com/wp-content/uploads/2023/04/barbell-bent-over-wide-grip-row.jpg",
-            targetMuscles:
-              "Mid-back (rhomboids, traps), lats, rear delts, biceps",
-          },
-          {
-            name: "Face Pull",
-            sets: "3 × 12",
-            img: "https://liftmanual.com/wp-content/uploads/2023/04/cable-standing-face-pull.jpg",
-            targetMuscles:
-              "Rear delts, external rotators (infraspinatus, teres minor), mid and lower traps, rhomboids",
-          },
-          {
-            name: "Incline Rear Delt Fly",
-            sets: "3 × 12",
-            img: "https://fitliferegime.com/wp-content/uploads/2023/06/Dumbbell-Rear-Delt-Fly.jpg",
-            targetMuscles:
-              "Rear delts (primary), upper back (rhomboids, traps)",
-          },
-          {
-            name: "Dumbbell Bicep Curl",
-            sets: "3 × 10",
-            img: "https://training.fit/wp-content/uploads/2018/12/bizepscurls.png",
-            targetMuscles: "Biceps brachii, brachialis",
-          },
-          {
-            name: "Hammer Curl",
-            sets: "2 × 10",
-            img: "https://training.fit/wp-content/uploads/2020/02/bizeps-hammercurls-800x448.png",
-            targetMuscles: "Brachialis, brachioradialis, biceps",
-          },
-        ],
-
-        "Day 3 - Legs": [
-          {
-            name: "Barbell Squat",
-            sets: "4 × 8",
-            img: "https://training.fit/wp-content/uploads/2020/03/kniebeugen-langhantel.png",
-            targetMuscles:
-              "Quads (primary), glutes, adductors, core (stabilizers)",
-          },
-          {
-            name: "Leg Press",
-            sets: "3 × 10",
-            img: "https://fitnessvolt.com/wp-content/uploads/2018/04/Anatomy-of-Incline-Leg-Press-750x305.jpg",
-            targetMuscles: "Quads (primary), glutes, some hamstrings",
-          },
-          {
-            name: "Romanian Deadlift",
-            sets: "3 × 8",
-            img: "https://training.fit/wp-content/uploads/2020/03/kreuzheben-gestreckte-beine.png",
-            targetMuscles: "Hamstrings, glutes, lower back (isometric)",
-          },
-          {
-            name: "Lying Leg Curl",
-            sets: "3 × 12",
-            img: "https://training.fit/wp-content/uploads/2020/03/beinbeugen-liegend-geraet.png",
-            targetMuscles: "Hamstrings",
-          },
-          {
-            name: "Leg Extension",
-            sets: "2 × 12",
-            img: "https://liftmanual.com/wp-content/uploads/2023/04/lever-leg-extension.jpg",
-            targetMuscles:
-              "Quads (rectus femoris, vastus lateralis/medialis/intermedius)",
-          },
-          {
-            name: "Standing Calf Raise",
-            sets: "3 × 12",
-            img: "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-standing-calf-raise.jpg",
-            targetMuscles: "Calves (gastrocnemius-dominant, some soleus)",
-          },
-          {
-            name: "Walking Lunges",
-            sets: "2 × 10 each leg",
-            img: "https://trainingstation.co.uk/cdn/shop/articles/Lunges-movment_d958998d-2a9f-430e-bdea-06f1e2bcc835_900x.webp?v=1741687877",
-            targetMuscles: "Quads, glutes, hamstrings, hip stabilizers",
-          },
-        ],
-
-        "Day 4 - Upper Accents": [
-          {
-            name: "Dumbbell Bench Press",
-            sets: "3 × 8",
-            img: "https://training.fit/wp-content/uploads/2019/07/bankdruecken-kurzhantel-flachbank-800x448.png",
-            targetMuscles: "Chest, anterior delts, triceps",
-          },
-          {
-            name: "Chest-Supported Row",
-            sets: "3 × 10",
-            img: "https://cdn.shopify.com/s/files/1/0449/8453/3153/files/chest_supported_row_muscles_worked_600x600.png?v=1716192902",
-            targetMuscles: "Mid-back (rhomboids, traps), lats, rear delts",
-          },
-          {
-            name: "Overhead Shoulder Press",
-            sets: "2 × 8",
-            img: "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-standing-overhead-press.jpg",
-            targetMuscles:
-              "Anterior and middle delts, triceps, upper traps (stabilizer)",
-          },
-          {
-            name: "Close-Grip Lat Pulldown",
-            sets: "3 × 10",
-            img: "https://www.burnthefatinnercircle.com/members/images/1708.jpg?cb=20250701051148",
-            targetMuscles: "Lats (primary), mid-back, biceps",
-          },
-          {
-            name: "Cable Lateral Raise",
-            sets: "2 × 12",
-            img: "https://liftmanual.com/wp-content/uploads/2023/04/cable-one-arm-lateral-raise.jpg",
-            targetMuscles:
-              "Middle delts (side shoulders), upper traps (assist)",
-          },
-          {
-            name: "Dumbbell Bicep Curl",
-            sets: "2 × 10",
-            img: "https://training.fit/wp-content/uploads/2018/12/bizepscurls.png",
-            targetMuscles: "Biceps brachii, brachialis",
-          },
-          {
-            name: "Rope Tricep Extension",
-            sets: "2 × 12",
-            img: "https://www.hevyapp.com/wp-content/uploads/02001101-Cable-Pushdown-with-rope-attachment_Upper-Arms_small.jpg",
-            targetMuscles: "Triceps (all heads, with long head emphasis)",
-          },
-        ],
-
-        "Day 5 - Lower Accents": [
-          {
-            name: "Dumbbell Goblet Squat",
-            sets: "3 × 12",
-            img: "https://anabolicaliens.com/cdn/shop/articles/5fbc1c1889a1d8fc84f5808b_dumbbell-goblet-squat.png?v=1641750308",
-            targetMuscles: "Quads (primary), glutes, core (stabilizers)",
-          },
-          {
-            name: "Hip Thrust or Glute Bridge",
-            sets: "3 × 10",
-            img: "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-hip-thrust.jpg",
-            targetMuscles: "Glutes (primary), hamstrings",
-          },
-          {
-            name: "Seated Leg Curl",
-            sets: "3 × 12",
-            img: "https://liftmanual.com/wp-content/uploads/2023/04/lever-seated-leg-curl.jpg",
-            targetMuscles: "Hamstrings",
-          },
-          {
-            name: "Dumbbell Split Squat",
-            sets: "2 × 10 each leg",
-            img: "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-split-squat.jpg",
-            targetMuscles: "Quads, glutes, hip stabilizers",
-          },
-          {
-            name: "Standing Calf Raise",
-            sets: "3 × 12",
-            img: "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-standing-calf-raise.jpg",
-            targetMuscles: "Calves (gastrocnemius-dominant, some soleus)",
-          },
-          {
-            name: "Plank",
-            sets: "3 × 45s",
-            img: "https://liftmanual.com/wp-content/uploads/2023/04/plank-on-hands.jpg",
-            targetMuscles:
-              "Core (rectus abdominis, obliques, transverse abdominis, spinal stabilizers)",
-          },
-        ],
-      };
-
-      function createExerciseHTML(exercise) {
-        return `
-          <div class="exercise">
-            <img src="${exercise.img}" alt="${exercise.name}" />
-            <div class="exercise-details">
-              <div class="name">${exercise.name}</div>
-              <div class="sets">${exercise.sets}</div>
-              <div class="target">${exercise.targetMuscles}</div>
-            </div>
-          </div>
-        `;
-      }
-
-      function generateWorkoutPlan() {
-        const container = document.getElementById("workout-plan-container");
-        let htmlContent = "";
-
-        for (const dayTitle in workoutData) {
-          if (workoutData.hasOwnProperty(dayTitle)) {
-            const exercises = workoutData[dayTitle];
-            let dayHTML = `<section class="day"><h2>${dayTitle}</h2>`;
-
-            exercises.forEach((exercise) => {
-              dayHTML += createExerciseHTML(exercise);
-            });
-
-            dayHTML += "</section>";
-            htmlContent += dayHTML;
-          }
-        }
-
-        container.innerHTML = htmlContent;
-      }
-
-      document.addEventListener("DOMContentLoaded", generateWorkoutPlan);
-    </script>
-  </body>
 </html>
