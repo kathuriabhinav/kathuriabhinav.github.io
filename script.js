@@ -1,9 +1,6 @@
 const body = document.body;
 const icon = document.querySelector('#darkToggle i');
 
-const playgroundBtn = document.getElementById("playgroundBtn");
-const playgroundMenu = document.getElementById("playgroundMenu");
-
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme === 'dark') {
   body.classList.add('dark');
@@ -24,13 +21,3 @@ document.getElementById('darkToggle').onclick = () => {
     localStorage.setItem('theme', 'light');
   }
 };
-
-playgroundBtn.onclick = () => {
-  playgroundMenu.classList.toggle("open");
-};
-
-window.addEventListener("click", e => {
-  if (!playgroundBtn.contains(e.target) && !playgroundMenu.contains(e.target)) {
-    playgroundMenu.classList.remove("open");
-  }
-});
