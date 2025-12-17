@@ -20,9 +20,9 @@ const workoutData = {
       targetMuscles: "Chest (pectoralis major), anterior delts, triceps",
     },
     {
-      name: "Incline Dumbbell Press",
+      name: "Incline Chest Press",
       sets: "3 × 8",
-      img: "https://fitliferegime.com/wp-content/uploads/2023/10/Incline-Dumbbell-Press-Muscles-Worked.jpg",
+      img: "https://dutch4health.nl/wp-content/uploads/2017/08/machine-chest-press.jpg",
       targetMuscles:
         "Upper chest (clavicular head), anterior delts, triceps",
     },
@@ -35,7 +35,7 @@ const workoutData = {
     {
       name: "Overhead Shoulder Press",
       sets: "3 × 8",
-      img: "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-standing-overhead-press.jpg",
+      img: "https://fitnessvolt.com/wp-content/uploads/2021/05/shoulder-press-machine-v2.png.webp",
       targetMuscles:
         "Anterior and middle delts, triceps, upper traps (stabilizer)",
     },
@@ -81,9 +81,9 @@ const workoutData = {
       targetMuscles: "Brachialis, brachioradialis, biceps",
     },
     {
-      name: "Incline Rear Delt Fly",
+      name: "Rear Delt Fly",
       sets: "3 × 12",
-      img: "https://fitliferegime.com/wp-content/uploads/2023/06/Dumbbell-Rear-Delt-Fly.jpg",
+      img: "https://anabolicaliens.com/cdn/shop/articles/5f9892a2b0625c92c74ee6b8_rear-delt-fly-machine-picture.png?v=1641754148",
       targetMuscles:
         "Rear delts (primary), upper back (rhomboids, traps)",
     },
@@ -165,7 +165,7 @@ const workoutData = {
     {
       name: "Overhead Shoulder Press",
       sets: "2 × 8",
-      img: "https://liftmanual.com/wp-content/uploads/2023/04/dumbbell-standing-overhead-press.jpg",
+      img: "https://fitnessvolt.com/wp-content/uploads/2021/05/shoulder-press-machine-v2.png.webp",
       targetMuscles:
         "Anterior and middle delts, triceps, upper traps (stabilizer)",
     },
