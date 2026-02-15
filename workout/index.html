@@ -3,45 +3,41 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Workout Plan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#f5f5f7" />
+  <title>Workout Tracker</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
 
-  <div class="app-shell">
+  <div class="app-container">
 
     <header class="header">
-      <h1>Workout Plan</h1>
+      <h1>💪 Workout Tracker</h1>
     </header>
 
     <div id="day-tabs" class="day-tabs"></div>
 
-    <main id="exercise-cards" class="cards-area"></main>
+    <div class="progress-section">
+      <div class="progress-info">
+        <span id="progress-text">0 / 6 completed</span>
+      </div>
+      <div class="progress-bar">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+    </div>
+
+    <main id="exercise-list" class="exercise-list"></main>
+
+    <div class="reset-section">
+      <button id="reset-day-btn" class="btn-reset">Reset Day</button>
+      <button id="reset-week-btn" class="btn-reset btn-reset-week">Reset Week</button>
+    </div>
 
   </div>
-
-  <!-- Floating pill footer -->
-  <footer class="footer-pill">
-    <div class="footer-content">
-
-      <div class="footer-main">
-        <div id="progress-day-label" class="progress-day-label"></div>
-        <div id="progress-text" class="progress-text"></div>
-
-        <div class="progress-bar-track">
-          <div id="progress-fill" class="progress-bar-fill"></div>
-        </div>
-      </div>
-
-      <div class="reset-buttons">
-        <button id="reset-day-btn" class="btn-reset-day">Reset Progress for the Day</button>
-        <button id="reset-week-btn" class="btn-reset-week">Reset Progress for the Week</button>
-      </div>
-
-    </div>
-  </footer>
 
   <script src="app.js"></script>
 </body>

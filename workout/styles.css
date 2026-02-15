@@ -1,373 +1,282 @@
-/* ----------------------------------------------------------
-   GLOBAL BASE
----------------------------------------------------------- */
+/* ---------------- BASE ---------------- */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
 
 body {
-  margin: 0;
-  background: #0c0c11;
-  color: #f1f1f1;
-  font-family: system-ui, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f5f5f7;
+  min-height: 100vh;
+  min-height: 100dvh;
+  color: #1a1a1a;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
-.app-shell {
+.app-container {
+  max-width: 100%;
   padding: 1rem;
-  padding-bottom: 12rem;
-  /* ensure last card visible above footer */
+  padding-top: max(1rem, env(safe-area-inset-top));
 }
 
-@media (min-width: 820px) {
-  .app-shell {
-    max-width: 1000px;
-    margin: auto;
-  }
-}
-
-/* ----------------------------------------------------------
-   HEADER
----------------------------------------------------------- */
+/* ---------------- HEADER ---------------- */
 
 .header {
   text-align: center;
-  padding: 0.5rem 0 1.25rem;
+  margin-bottom: 1.25rem;
 }
 
-h1 {
-  margin: 0;
-  font-size: 1.6rem;
+.header h1 {
+  font-size: 1.5rem;
   font-weight: 700;
+  color: #1a1a1a;
 }
 
-/* ----------------------------------------------------------
-   DAY TABS
----------------------------------------------------------- */
+/* ---------------- DAY TABS ---------------- */
 
 .day-tabs {
   display: flex;
-  flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 1rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-.day-chip {
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.06);
-  color: #ddd;
+.day-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.day-tab {
+  flex: 1;
+  min-width: 0;
+  padding: 0.75rem 0.5rem;
+  border: none;
+  border-radius: 12px;
+  background: #fff;
+  color: #666;
+  font-size: 0.8rem;
+  font-weight: 600;
   cursor: pointer;
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: background 0.2s ease;
+  transition: all 0.2s ease;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 
-.day-chip.active {
-  background: rgba(0, 122, 255, 0.38);
-  border-color: rgba(0, 122, 255, 0.6);
+.day-tab:active {
+  transform: scale(0.96);
+}
+
+.day-tab.active {
+  background: #4f46e5;
   color: #fff;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
 }
 
-.day-chip:hover {
-  background: rgba(255, 255, 255, 0.12);
-}
+/* ---------------- PROGRESS SECTION ---------------- */
 
-/* ----------------------------------------------------------
-   CARDS AREA (LIST)
----------------------------------------------------------- */
-
-.cards-area {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
+.progress-section {
+  background: #fff;
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
   margin-bottom: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 
-@media (min-width: 820px) {
-  .cards-area {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.4rem;
-  }
+.progress-info {
+  margin-bottom: 0.5rem;
 }
 
-/* ----------------------------------------------------------
-   EXERCISE CARD
----------------------------------------------------------- */
-
-.exercise-card {
-  border-radius: 22px;
-  background: rgba(40, 40, 52, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 1rem;
-  transition: background 0.25s ease, box-shadow 0.25s ease;
-  backdrop-filter: blur(10px);
+#progress-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333;
 }
 
-/* Hover elevation for desktop */
-@media (min-width: 820px) {
-  .exercise-card {
-    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.28);
-  }
-
-  .exercise-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.38);
-  }
+.progress-bar {
+  height: 10px;
+  background: #e5e5e5;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.exercise-card.expanded {
-  background: rgba(52, 52, 65, 0.88);
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #4f46e5, #7c3aed);
+  border-radius: 10px;
+  transition: width 0.3s ease;
 }
 
-.exercise-card.done {
-  opacity: 0.62;
-}
+/* ---------------- EXERCISE LIST ---------------- */
 
-/* ----------------------------------------------------------
-   CARD CONTENT
----------------------------------------------------------- */
-
-.exercise-main {
+.exercise-list {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
 }
 
-/* Thumbnail */
-.exercise-thumb {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 6px;
-  height: 160px;
+.exercise-item {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.85rem;
+  background: #fff;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 2px solid transparent;
+  user-select: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 
-.exercise-thumb img {
+.exercise-item:active {
+  transform: scale(0.98);
+  background: #fafafa;
+}
+
+.exercise-item.completed {
+  background: #f0fdf4;
+  border-color: #86efac;
+}
+
+.exercise-item.completed .exercise-name {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.exercise-item.completed .exercise-img {
+  opacity: 0.5;
+}
+
+/* Exercise Image */
+.exercise-img {
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease;
+}
+
+.exercise-img img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-@media (min-width: 820px) {
-  .exercise-thumb {
-    height: 130px;
-  }
+/* Exercise Bottom Row */
+.exercise-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-/* Title */
-.exercise-title {
-  font-size: 1rem;
+/* Custom Checkbox */
+.exercise-checkbox {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.exercise-checkbox input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  background: #f0f0f0;
+  border: 2px solid #d0d0d0;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.exercise-checkbox input:checked + .checkmark {
+  background: #22c55e;
+  border-color: #22c55e;
+}
+
+.checkmark::after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 9px;
+  top: 4px;
+  width: 7px;
+  height: 13px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.exercise-checkbox input:checked + .checkmark::after {
+  display: block;
+}
+
+/* Exercise Info */
+.exercise-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.exercise-name {
+  font-size: 0.95rem;
   font-weight: 600;
-  color: #fff;
+  color: #1a1a1a;
+  transition: all 0.2s ease;
+  line-height: 1.2;
 }
 
-/* Meta Pills */
-.exercise-meta {
+.exercise-sets {
+  font-size: 0.8rem;
+  color: #888;
+  font-weight: 500;
+}
+
+/* ---------------- RESET BUTTONS ---------------- */
+
+.reset-section {
   display: flex;
-  align-items: center;
-  gap: 0.45rem;
+  gap: 0.6rem;
+  padding-bottom: 1rem;
 }
 
-.sets-pill {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 0.25rem 0.6rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
-}
-
-.day-tag {
-  background: rgba(0, 122, 255, 0.32);
-  padding: 0.25rem 0.6rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
-}
-
-/* ----------------------------------------------------------
-   DONE PILL + CHEVRON
----------------------------------------------------------- */
-
-.pill-row {
-  margin-top: 0.35rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.65rem;
-}
-
-/* Done pill */
-.done-pill {
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
+.btn-reset {
+  flex: 1;
+  padding: 0.9rem 0.75rem;
+  border: none;
+  border-radius: 12px;
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #ccc;
-
-  transition: background 0.25s ease, border-color 0.25s ease,
-    color 0.25s ease, transform 0.15s ease;
+  transition: all 0.15s ease;
+  background: #fff;
+  color: #ef4444;
+  border: 1px solid #fecaca;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 
-.done-pill.done {
-  background: rgba(46, 180, 70, 0.22);
-  border-color: rgba(46, 180, 70, 0.55);
-  color: #6ef28c;
-}
-
-.done-pill:active {
-  transform: scale(0.95);
-}
-
-@media (min-width: 820px) {
-  .done-pill:hover {
-    background: rgba(46, 180, 70, 0.32);
-  }
-}
-
-/* Chevron */
-.details-chevron {
-  font-size: 1.15rem;
-  opacity: 0.75;
-  cursor: pointer;
-  user-select: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.details-chevron:hover {
-  opacity: 1;
-}
-
-.exercise-card.expanded .details-chevron {
-  transform: rotate(180deg);
-}
-
-/* ----------------------------------------------------------
-   EXPANDABLE SECTION
----------------------------------------------------------- */
-
-.exercise-extra {
-  color: #ccc;
-  line-height: 1.35;
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  transition: max-height 0.3s ease, opacity 0.25s ease;
-  margin-top: 0.6rem;
-}
-
-.exercise-card.expanded .exercise-extra {
-  max-height: 200px;
-  opacity: 1;
-}
-
-/* ----------------------------------------------------------
-   FOOTER (FLOATING PILL)
----------------------------------------------------------- */
-
-.footer-pill {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 24px;
-  padding: 0 1rem;
-
-  display: flex;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.footer-content {
-  width: 100%;
-  max-width: 750px;
-  border-radius: 24px;
-
-  background: rgba(22, 22, 28, 0.58);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
-
-  padding: 1rem 1.1rem;
-  pointer-events: auto;
-
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-
-  transition: height 0.3s ease, padding 0.3s ease;
-}
-
-.reset-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-
-  opacity: 0;
-  max-height: 0;
-  pointer-events: none;
-
-  transition: opacity 0.28s ease, max-height 0.28s ease;
-}
-
-body.footer-expanded .reset-buttons {
-  opacity: 1;
-  max-height: 200px;
-  pointer-events: auto;
-}
-
-/* Reset buttons */
-.btn-reset-day,
-.btn-reset-week {
-  padding: 0.55rem 1rem;
-  border-radius: 999px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-
-  backdrop-filter: blur(10px);
-  transition: background 0.22s ease, border-color 0.22s ease;
-}
-
-.btn-reset-day {
-  background: rgba(255, 70, 70, 0.15);
-  color: #ff7a7a;
-  border: 1px solid rgba(255, 120, 120, 0.45);
-}
-
-.btn-reset-week {
-  background: rgba(255, 50, 50, 0.22);
-  color: #ff5a5a;
-  border: 1px solid rgba(255, 90, 90, 0.6);
-}
-
-/* Progress text */
-.progress-day-label {
-  font-size: 0.95rem;
-  font-weight: 600;
-}
-
-.progress-text {
-  font-size: 0.8rem;
-  opacity: 0.85;
-}
-
-/* Progress bar */
-.progress-bar-track {
-  width: 100%;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-.progress-bar-fill {
-  height: 100%;
-  width: 0%;
-  background: rgba(0, 122, 255, 0.55);
-  transition: width 0.25s ease;
+.btn-reset:active {
+  transform: scale(0.96);
+  background: #fef2f2;
 }
